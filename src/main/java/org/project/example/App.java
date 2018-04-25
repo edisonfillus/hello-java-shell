@@ -1,5 +1,7 @@
 package org.project.example;
 
+import java.io.PrintWriter;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -58,9 +60,10 @@ public class App {
 
     private static void printHelp(final Options options) {
         final HelpFormatter formatter = new HelpFormatter();
-        final String usageHeader = "Example of using hello-java-shell";
-        final String usageFooter = "See hello-java-shell documentation for further details.";
-        formatter.printHelp("hello-java-shell",usageHeader,options,usageFooter,true);
+        final String header = "List of parameters:";
+        final String footer = "See hello-java-shell documentation for further details.";
+        formatter.setSyntaxPrefix("usage: ");
+        formatter.printHelp("java -jar hello-java-shell.jar",header, options, footer,true);
     }
 
 }
