@@ -1,7 +1,5 @@
 package org.project.example;
 
-import java.io.PrintWriter;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -13,25 +11,30 @@ import org.apache.commons.cli.ParseException;
 public class App {
 
     public static void main(String[] args) {
-        
+
+        if(args.length == 0){
+            printHelp(generateOptions());
+            return;
+        }
+
         final CommandLineParser cmdLineParser = new DefaultParser();
-        CommandLine commandLine = null;
+        CommandLine commandLine;
 		try {
 			commandLine = cmdLineParser.parse(generateOptions(), args);
 		} catch (ParseException e) {
             System.out.println("Wrong arguments... see hello-java-shell usage");
             printHelp(generateOptions());
-            System.exit(0);
+            return;
         }
         
         if(commandLine.hasOption("help")){
             printHelp(generateOptions());
-            System.exit(0);
+            return;
         }
 
         if(commandLine.hasOption("version")){
             System.out.println("hello-java-shell version 0.0.1");
-            System.exit(0);
+            return;
         }
 
         if(commandLine.hasOption("param")){
