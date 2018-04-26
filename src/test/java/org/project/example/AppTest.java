@@ -82,13 +82,13 @@ public class AppTest {
     }
 
     @Test
-    public void shouldShowParam() throws IOException {
+    public void shouldShowRequidedParams() throws IOException {
         // Redirect System.out to buffer
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bo));
 
         // Execute test
-        App.main(new String[] { "--param", "name" });
+        App.main(new String[] {"-p1", "param1", "-p2", "param2"});
 
         // Get the System.out and log
         bo.flush();
@@ -99,7 +99,7 @@ public class AppTest {
         System.setOut(stdout);
 
         // Check results
-        assertTrue(allWrittenLines.startsWith("Param value: name"));
+        assertTrue(allWrittenLines.startsWith("Param 1 value: param1"));
     }
 
     @Test
